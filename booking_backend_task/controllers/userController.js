@@ -76,6 +76,7 @@ exports.user_login = async function(req, res){
         if (user != null){
             console.log("ji")
             const token = await user.generateAuthToken()
+            user.tokens.push(token);
             return res.status(200).json({user: user, token: token})    
         
         }

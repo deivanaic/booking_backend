@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var producer = require('./producer');
+
 //Set up mongoose connection
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb://127.0.0.1/booking';
@@ -14,7 +16,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var hubRouter = require('./routes/hub');
-var bookingRouter = require('./routes/booking');
+var bookingRouter = require('./routes/booking')
 
 var app = express();
 
@@ -49,4 +51,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+producer.background_task()
 module.exports = app;
