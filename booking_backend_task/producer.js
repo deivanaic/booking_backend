@@ -10,8 +10,6 @@ const options = {
     }
 }
 
-
-
 exports.background_task = function(){
     const trigger_queue = new Queue('status-update');
     trigger_queue.add({}, options)
